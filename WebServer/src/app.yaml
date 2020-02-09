@@ -2,3 +2,5 @@ runtime: python37
 
 env_variables:
   USE_UNIX_SOCKET: False
+  GOOGLE_CLIENT_ID: "407084566614-avrajn7u6ilk8i4cgl4ojqa699cbd3td.apps.googleusercontent.com"
+  GOOGLE_CLIENT_SECRET: "WtXazKRXpq32MySRZyacDLWN"
