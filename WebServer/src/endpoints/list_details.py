@@ -27,7 +27,7 @@ def getListDetails(list_id):
 
     db = mysql.connector.connect(**kwargs)
     db_cursor = db.cursor(prepared=True)
-    db_cursor.execute("SELECT p.list_id, l.name, sku, p.name, p.description, qty, location, checked  FROM wegamns_watch.product p INNER JOIN wegamns_watch.list l ON p.list_id = l.list_id WHERE p.list_id = %s;", list_id)
+    db_cursor.execute("SELECT p.list_id, l.name, p.entry_id, sku, p.name, p.description, qty, location, checked  FROM wegamns_watch.product p INNER JOIN wegamns_watch.list l ON p.list_id = l.list_id WHERE p.list_id = %s;", list_id)
     myresult = db_cursor.fetchall()
     field_names = [i[0] for i in db_cursor.description]
     for res in myresult:
