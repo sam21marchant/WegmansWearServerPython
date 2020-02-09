@@ -75,7 +75,7 @@ def callback():
     uri, headers, body = client.add_token(userinfo_endpoint)
     userinfo_response = requests.get(uri, headers=headers, data=body)
     print(userinfo_response.json()["sub"])
-    return redirect(url_for("index"))
+    return redirect(url_for("home"))
 
 @app.route('/home')
 def home():
