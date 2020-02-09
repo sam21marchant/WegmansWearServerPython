@@ -154,6 +154,18 @@
             <div class="items" id="items">
                 
             </div>
+            <button class="additem" type="button" onclick="addEntry()">Add entry</button>
+
+
+            <button class="createlist" onclick="submitData()">Create Shopping List</button>
+            <script>
+                document.getElementById("search-text").addEventListener("keyup", function(event) {
+                    if(event.keyCode == 13) {
+                        event.preventDefault();
+                        document.getElementById("search-button").click();
+                    }
+                });
+            </script>
         </div>
     </body>
 </html>
