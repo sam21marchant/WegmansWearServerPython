@@ -7,6 +7,8 @@ from endpoints import *
 from oauthlib.oauth2 import WebApplicationClient
 import requests 
 
+import random
+
 # Configuration
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
 GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
@@ -107,6 +109,13 @@ def getListDetails(list_id):
 def makeSearch():
     string = request.args.get('query')
     return search_produce.search_produce(string)
+
+@app.route('/endpoints/add-product')
+def add_product():
+    skus = request.form.get('skus')
+    names = request.form.get('names')
+    list_id = random.randint(10, 100)
+    return add_product.add_product(list_id, skus, names)
 
 
 @app.route('/endpoints/products/<entry_id>', methods = ['PUT'])
