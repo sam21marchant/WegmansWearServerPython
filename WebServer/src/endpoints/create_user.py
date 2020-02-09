@@ -27,11 +27,11 @@ def insertUser(google_id, name):
 
     db = mysql.connector.connect(**kwargs)
     db_cursor = db.cursor(prepared=True)
-    db_cursor.execute("SELECT user_id FROM user WHERE google_id = %s LIMIT 1;", google_id)
+    db_cursor.execute("SELECT user_id FROM wegamns_watch.user WHERE google_id = %s LIMIT 1;", google_id)
     res = cur.fetchone()
     rc = cur.rowcount
     if rc == 0:
-        db_cursor.execute("INSERT INTO user (name, google_id)VALUES(%s,%s) LIMIT 1;", (name, google_id))
+        db_cursor.execute("INSERT INTO wegamns_watch.user (name, google_id)VALUES(%s,%s) LIMIT 1;", (name, google_id))
         user_id = db.insert_id()
     else:
         user_id = res[0]
