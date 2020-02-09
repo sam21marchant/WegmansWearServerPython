@@ -17,8 +17,9 @@ def search_produce(search_string):
 
     params = urllib.parse.urlencode({
         'subscription-key': 'bafe992034b244e688209673ebd2876b',
-        "query":"kabob",
-        "api-version":"2018-10-18"
+        "query":search_string,
+        "api-version":"2018-10-18",
+        "results": 10
     })
     try:
         r = requests.get(url, headers=headers, params=params)
