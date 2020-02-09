@@ -3,10 +3,7 @@ import json
 import os
 
 
-def insertUser(google_id, name):
-    ret_payload = []
-    ret_code = 200
-
+def put_checked(user_id, list_id, sku, checked):
     DB_HOST="35.245.85.231"
     DB_USER="Database-Admin"
     DB_USER_READ="Database-Admin-Read"
@@ -27,17 +24,5 @@ def insertUser(google_id, name):
 
     db = mysql.connector.connect(**kwargs)
     db_cursor = db.cursor(prepared=True)
-    db_cursor.execute("""INSERT INTO user (name, google_id)
-        SELECT %s, %s
-        FROM DUAL
-        WHERE NOT EXISTS(
-            SELECT 1
-            FROM user
-            WHERE google_id = %s
-        )
-        LIMIT 1;""", (google_id, name, google_id))
-    db_cursor.execute("SELECT user_id FROM user WHERE google_id = %s LIMIT 1;", google_id)
-    row = db_cursor.fetchone()
+    db_cursor.execute("UPDATE wegamns_watch.product p JOIN wegamns_watch.list l ON p.list_id = l.list_id AND p.list_id = %s JOIN wegamns_watch.user u ON u.user_id = l.user_id AND l.user_id = %s SET p.checked = %s WHERE sku = %s", (list_id, user_id, checked, sku))
     db.commit()
-    
-    return row[0], ret_code
