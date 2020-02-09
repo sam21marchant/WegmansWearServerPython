@@ -3,7 +3,7 @@ import json
 import os
 
 
-def put_checked(user_id, list_id, sku, checked):
+def put_checked(entry_id, checked):
     DB_HOST="35.245.85.231"
     DB_USER="Database-Admin"
     DB_USER_READ="Database-Admin-Read"
@@ -24,5 +24,5 @@ def put_checked(user_id, list_id, sku, checked):
 
     db = mysql.connector.connect(**kwargs)
     db_cursor = db.cursor(prepared=True)
-    db_cursor.execute("UPDATE wegamns_watch.product p INNER JOIN wegamns_watch.list l ON p.list_id = l.list_id AND p.list_id = %s INNER JOIN wegamns_watch.user u ON u.user_id = l.user_id AND l.user_id = %s SET p.checked = %s WHERE sku = %s", (list_id, user_id, checked, sku))
+    db_cursor.execute("UPDATE wegamns_watch.product p SET p.checked = %s WHERE p.entry_id = %s", (checked, entry_id))
     db.commit()
