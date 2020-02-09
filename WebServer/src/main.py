@@ -74,7 +74,7 @@ def callback():
     userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
     uri, headers, body = client.add_token(userinfo_endpoint)
     userinfo_response = requests.get(uri, headers=headers, data=body)
-    print(userinfo_response.json()["sub"])
+    create_user.insertUser(userinfo_response.json()["sub"], userinfo_response.json()["given_name"])
     return redirect(url_for("index"))
 
 @app.route('/home')
@@ -84,6 +84,13 @@ def home():
 @app.route('/create')
 def createIndex():
     return render_template('create.html')
+
+@app.route('/lists')
+def list_view():
+    ret_payload, ret_code = lists.getLists(str(1))
+    todo_lists = json.loads(ret_payload)
+    print(todo_lists)
+    return render_template('lists.html', lists=todo_lists)
 
 @app.route('/endpoints/lists')
 def getList():
