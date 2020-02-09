@@ -77,16 +77,14 @@
             function selectItem(e) {
                 items = document.getElementById("items");
                 search = items.childNodes[1];
-                idnum = search.getAttribute("id");
 
                 children = e.childNodes;
 
                 var itembinder = document.createElement("DIV");
 
-                html = '<div class="itembinder" id="'
-                html += idnum+'"><div class="selecteditem"><div class="selecteditemcontainer"><div class="itemdata"><div class="selecteditem-name">Product: '
-                html += children[1].getAttribute("value")+'</div><div class="selecteditem-sku">SKU: '
-                html += children[3].getAttribute("value")+'</div></div></div><button class="delete" type="button" onClick="delSelItem(this)">🗑️</button></div><hr></div>'
+                html = '<div class="itembinder"><div class="selecteditem"><div class="selecteditemcontainer"><div class="itemdata"><div class="name">Product: '
+                html += children[0].getAttribute("value")+'</div><div class="sku">SKU: '
+                html += children[1].getAttribute("value")+'</div></div></div><button class="delete" type="button" onClick="delSelItem(this)">🗑️</button></div><hr></div>'
 
                 itembinder.innerHTML = html;
 
@@ -122,31 +120,13 @@
                     </div>
                 </div>
                 <div id="search-results">
-                    <div class="searchitem" onclick="selectItem(this)">
-                        <div class="searchitem-name" value="mm yum yum">mm yum yum</div>
-                        <div class="searchitem-sku" value="3947">SKU: 3947</div>
-                    </div>
-                    <div class="searchitem" onclick="selectItem(this)">
-                        <div class="searchitem-name" value="oops poo poo">oops poo poo</div>
-                        <div class="searchitem-sku" value="404">SKU: 404</div>
-                    </div>
+                    
                 </div>
             </div>
             <hr>
 
             <div class="items" id="items">
-                <div class="itembinder" id="1">
-                    <div class="selecteditem">
-                        <div class="selecteditemcontainer">
-                            <div class="itemdata">
-                                <div class="selecteditem-name">Product: mm yum yum</div>
-                                <div class="selecteditem-sku">SKU: 3947</div>
-                            </div>
-                        </div>
-                        <button class="delete" type="button" onClick="delSelItem(this)">🗑️</button>
-                    </div>
-                    <hr>
-                </div>
+                
             </div>
         </div>
     </body>
