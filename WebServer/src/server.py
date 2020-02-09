@@ -6,8 +6,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    name = request.args.get("msg", "World")
-    return render_template('index.html', msg=name)
+    return render_template('index.html')
+
+
+@app.route('/create')
+def createIndex():
+    return render_template('create.html')
 
 @app.route('/endpoints/lists')
 def getList():
