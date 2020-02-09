@@ -2,6 +2,14 @@ body {
     font-family: Arial;
 }
 
+html.background{
+    background: url(images/assorted-vegetable-lot.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 div.title {
     text-align: center;
     padding-top: 20px;
