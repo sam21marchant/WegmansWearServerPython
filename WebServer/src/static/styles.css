@@ -106,3 +106,27 @@ button.additem, button.additem:focus {
     outline: none;
     margin-bottom: 200px;
 }
+
+div.indextitle {
+    width: 70%;
+    height: 150px;
+    margin: 0px auto;
+    margin-top: 50px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, .8);
+    outline: 5px solid white;
+    display: flex;
+    justify-content: space-around;
+}
+
+span.maintitle {
+    font-size: 92px;
+    line-height: 140px;
+}
+
+div.loginbox {
+    width: 40%;
+    height: 500px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, .8);
+}
