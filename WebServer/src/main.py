@@ -103,6 +103,10 @@ def getList():
 def getListDetails(list_id):
     return list_details.getListDetails(list_id)
 
+@app.route('/endpoints/search')
+def makeSearch():
+    string = request.args.get('query')
+    return search_produce.search_produce(string)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
