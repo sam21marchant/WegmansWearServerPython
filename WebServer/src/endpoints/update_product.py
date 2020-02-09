@@ -24,5 +24,5 @@ def put_checked(user_id, list_id, sku, checked):
 
     db = mysql.connector.connect(**kwargs)
     db_cursor = db.cursor(prepared=True)
-    db_cursor.execute("UPDATE wegamns_watch.product p JOIN wegamns_watch.list l ON p.list_id = l.list_id AND p.list_id = %s JOIN wegamns_watch.user u ON u.user_id = l.user_id AND l.user_id = %s SET p.checked = %s WHERE sku = %s", (list_id, user_id, checked, sku))
+    db_cursor.execute("UPDATE wegamns_watch.product p INNER JOIN wegamns_watch.list l ON p.list_id = l.list_id AND p.list_id = %s INNER JOIN wegamns_watch.user u ON u.user_id = l.user_id AND l.user_id = %s SET p.checked = %s WHERE sku = %s", (list_id, user_id, checked, sku))
     db.commit()

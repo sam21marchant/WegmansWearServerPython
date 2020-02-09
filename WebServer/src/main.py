@@ -113,8 +113,9 @@ def makeSearch():
 def updateProduct(list_id, sku):
     checked = request.args.get('checked')
     checked = checked == 'true'
-    auth = headers.get("X-Api-Key")
+    auth = request.headers.get("X-Api-Key")
     update_product.put_checked(auth, list_id, sku, checked)
+    return "GOOD"
     
 
 
