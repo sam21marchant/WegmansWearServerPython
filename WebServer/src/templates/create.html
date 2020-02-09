@@ -7,6 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="script.js"></script>
         <script>
+<<<<<<< HEAD
             counter = 1;
 
             function addEntry() {
@@ -68,6 +69,8 @@
             function delItem(e) {
                 e.parentNode.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode.parentNode);
             }
+=======
+>>>>>>> e09a914d5d13d3bc2a677d91cc4a075cb418a90a
 
             function delSelItem(e) {
                 e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode);
@@ -200,7 +203,19 @@
                     <hr>
                 </div>
             </div>
+
             <button class="additem" type="button" onclick="addEntry()">Add entry</button>
+
+
+            <button class="createlist" onclick="submitData()">Create Shopping List</button>
+            <script>
+                document.getElementById("search-text").addEventListener("keyup", function(event) {
+                    if(event.keyCode == 13) {
+                        event.preventDefault();
+                        document.getElementById("search-button").click();
+                    }
+                });
+            </script>
         </div>
     </body>
 </html>
