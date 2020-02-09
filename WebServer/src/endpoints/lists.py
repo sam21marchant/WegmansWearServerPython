@@ -40,5 +40,5 @@ def getLists(user_id):
                 val = res[i]
             x[db_cursor.description[i][0]] = val
         ret_payload.append(x)
-    print(ret_payload)
+    
     return json.dumps(ret_payload), ret_code

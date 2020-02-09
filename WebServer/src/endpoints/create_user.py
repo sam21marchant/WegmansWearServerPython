@@ -35,7 +35,7 @@ def insertUser(google_id, name):
             FROM user
             WHERE google_id = %s
         )
-        LIMIT 1;""", google_id, name, google_id)
+        LIMIT 1;""", (google_id, name, google_id))
     db_cursor.execute("SELECT user_id FROM user WHERE google_id = %s LIMIT 1;", google_id)
     row = db_cursor.fetchone()
     
