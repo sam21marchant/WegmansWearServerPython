@@ -38,7 +38,10 @@ def getListDetails(list_id):
             try:
                 val = res[i].decode()
             except (AttributeError):
-                val = res[i]
+                if i == len(field_names)-1:
+                    val = res[i] == 1
+                else:
+                    val = res[i]
             x[db_cursor.description[i][0]] = val
         ret_payload['data'].append(x)
     return json.dumps(ret_payload), ret_code
