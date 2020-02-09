@@ -1,1 +1,4 @@
 runtime: python37
+
+env_variables:
+  USE_UNIX_SOCKET: False

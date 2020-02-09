@@ -19,5 +19,10 @@ def getList():
     auth = headers.get("X-Api-Key")
     return lists.getLists(auth)
 
+@app.route('/endpoints/lists/<list_id>')
+def getListDetails(list_id):
+    return list_details.getListDetails(list_id)
+
+
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)

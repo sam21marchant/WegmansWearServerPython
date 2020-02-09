@@ -2,8 +2,7 @@ import mysql.connector
 import json
 import os
 
-
-def getLists(user_id):
+def getListDetails(list_id):
     ret_payload = []
     ret_code = 200
 
@@ -27,11 +26,10 @@ def getLists(user_id):
 
     db = mysql.connector.connect(**kwargs)
     db_cursor = db.cursor(prepared=True)
-    db_cursor.execute("SELECT * FROM wegamns_watch.list WHERE user_id = %s;", user_id)
+    db_cursor.execute("SELECT * FROM wegamns_watch.product WHERE list_id = %s;", list_id)
     myresult = db_cursor.fetchall()
     field_names = [i[0] for i in db_cursor.description]
     for res in myresult:
-        print(res)
         x={}
         for i in range(len(db_cursor.description)):
             try:
@@ -40,5 +38,4 @@ def getLists(user_id):
                 val = res[i]
             x[db_cursor.description[i][0]] = val
         ret_payload.append(x)
-    print(ret_payload)
     return json.dumps(ret_payload), ret_code
