@@ -74,8 +74,36 @@
             function selectItem(e) {
                 items = e.parentNode.parentNode.parentNode;
                 search = items.childNodes[1];
+                idnum = search.getAttribute("id");
+
+                children = e.childNodes;
+
+                var itembinder = document.createElement("DIV");
+
+                html = '<div class="selecteditem"><div class="selecteditemcontainer"><div class="itemdata"><div class="selecteditem-name">Product: ';
+                html += children[1].getAttribute("value")+'</div><div class="selecteditem-sku">SKU: ';
+                html += children[3].getAttribute("value")+'</div><div class="selecteditem-price" id="selecteditem-price';
+                html += idnum
+                html += '" price="';
+                html += children[5].getAttribute("value")+'">Price: ';
+                html += children[5].getAttribute("value")+'</div><div class="quantitycontrol"><input class="unitinput" id="unitinput';
+                html += idnum;
+                html += '" type="number" value="1" min="1" max="999" onchange="updatePrice(';
+                html += idnum;
+                html += ')"><div class="selecteditem-units">';
+                html += children[7].getAttribute("value")+'</div></div></div></div><button class="delete" type="button" onclick="delSelItem(this)">🗑️</button></div><hr>';
+
+                itembinder.innerHTML = html;
+
+                items.appendChild(itembinder);
                 items.removeChild(search);
             }
+
+            function updatePrice(c) {
+                e = document.getElementById("selecteditem-price"+c);
+                e.innerHTML = "Price: "+e.getAttribute("price")*document.getElementById("unitinput"+c).value;
+            }
+
         </script>
     </head>
     <body>
@@ -107,23 +135,30 @@
                     </div>
                     <div class="searchresults">
                         <div class="searchitem" onclick="selectItem(this)">
-                            <div class="searchitem-name">mm yum yum</div>
-                            <div class="searchitem-sku">SKU: 3947</div>
-                            <div class="searchitem-price">Price: 420</div>
-                            <div class="searchitem-units">Unit: teemo</div>
+                            <div class="searchitem-name" value="mm yum yum">mm yum yum</div>
+                            <div class="searchitem-sku" value="3947">SKU: 3947</div>
+                            <div class="searchitem-price" value="420">Price: 420</div>
+                            <div class="searchitem-units" value="teemo(s)">Unit: teemo(s)</div>
+                        </div>
+                        <div class="searchitem" onclick="selectItem(this)">
+                            <div class="searchitem-name" value="oops poo poo">oops poo poo</div>
+                            <div class="searchitem-sku" value="404">SKU: 404</div>
+                            <div class="searchitem-price" value="4">Price: 4</div>
+                            <div class="searchitem-units" value="poo(s)">Unit: poo(s)</div>
                         </div>
                     </div>
                     <hr>
                 </div>
+
                 <div class="itembinder" id="2">
                     <div class="selecteditem">
                         <div class="selecteditemcontainer">
                             <div class="itemdata">
                                 <div class="selecteditem-name">Product: mm yum yum</div>
                                 <div class="selecteditem-sku">SKU: 3947</div>
-                                <div class="selecteditem-price">Price: 420</div>
+                                <div class="selecteditem-price" id="selecteditem-price2" price="420">Price: 420</div>
                                 <div class="quantitycontrol">
-                                    <input class="unitinput" type="number" value="1" min="1" max="999">
+                                    <input class="unitinput" id="unitinput2" type="number" value="1" min="1" max="999" onchange="updatePrice(2)">
                                     <div class="selecteditem-units">teemo(s)</div>
                                 </div>
                             </div>
