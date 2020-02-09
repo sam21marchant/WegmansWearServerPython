@@ -38,6 +38,63 @@ a.titlelink {
 div.content {
     background-color: #f2f2f2;
     margin: 50px 5%;
+    padding: 10px 10px;
     width: 90%;
-    min-height: 1000px;
+}
+
+div.sectiontitle {
+    padding: 10px 0px;
+}
+
+input.shoppinglistname {
+    width: 100%;
+    font-size: 36px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+input.search {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+button.search {
+    width: 100%;
+}
+
+div.item {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+div.itemleft {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+div.itemright {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+div.items {
+    margin: 0px 5px;
+}
+
+button.additem, button.additem:focus {
+    width: 100%;
+    height: 200px;
+    font-size: 64px;
+    font-weight: bold;
+    background: white;
+    border: none !important;
+    outline: none;
+    margin-bottom: 200px;
 }
