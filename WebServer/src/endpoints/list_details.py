@@ -3,7 +3,8 @@ import json
 import os
 
 def getListDetails(list_id):
-    ret_payload = []
+    ret_payload = {}
+    ret_payload['data'] = []
     ret_code = 200
 
     DB_HOST="35.245.85.231"
@@ -26,16 +27,18 @@ def getListDetails(list_id):
 
     db = mysql.connector.connect(**kwargs)
     db_cursor = db.cursor(prepared=True)
-    db_cursor.execute("SELECT * FROM wegamns_watch.product WHERE list_id = %s;", list_id)
+    db_cursor.execute("SELECT p.list_id, l.name, sku, p.name, p.description, qty, location, checked  FROM wegamns_watch.product p INNER JOIN wegamns_watch.list l ON p.list_id = l.list_id WHERE p.list_id = %s;", list_id)
     myresult = db_cursor.fetchall()
     field_names = [i[0] for i in db_cursor.description]
     for res in myresult:
         x={}
-        for i in range(len(db_cursor.description)):
+        ret_payload['id'] = res[0]
+        ret_payload['name'] = res[1].decode()
+        for i in range(2,len(field_names)):
             try:
                 val = res[i].decode()
             except (AttributeError):
                 val = res[i]
             x[db_cursor.description[i][0]] = val
-        ret_payload.append(x)
+        ret_payload['data'].append(x)
     return json.dumps(ret_payload), ret_code
