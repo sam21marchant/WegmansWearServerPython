@@ -64,7 +64,7 @@ input.shoppinglistname {
     box-sizing: border-box;
 }
 
-input.search {
+input.search-text {
     width: 100%;
     height: 100%;
     font-size: 16px;
@@ -151,7 +151,7 @@ div.selecteditemcontainer {
 
 div.itemdata {
     display: flex;
-    justify-content: space-between;
+    justify-content: row;
 }
 
 div.quantitycontrol {
@@ -200,4 +200,8 @@ button.login{
     text-align: center;
     margin-left: 35%;
     width: 30%;
+}
+
+div.name {
+    margin-right: 50px;
 }

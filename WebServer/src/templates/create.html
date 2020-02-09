@@ -5,7 +5,7 @@
         <title>Create List</title>
         <link rel="stylesheet" type="text/css" href="static/styles.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="script.js"></script>
+        <script src="static/script.js"></script>
         <script>
             counter = 1;
 
@@ -34,12 +34,13 @@
 
                 itemleft.setAttribute("class", "itemleft");
 
-                searchInput.setAttribute("class", "search");
+                searchInput.setAttribute("class", "search-text");
                 searchInput.setAttribute("type", "text");
                 searchInput.setAttribute("name", "search");
                 searchInput.setAttribute("placeholder", "Search here");
 
                 searchButton.setAttribute("class", "search");
+                searchButton.setAttribute("id", "search-button");
                 searchButton.setAttribute("type", "button");
 
                 deleteB.setAttribute("class", "delete");
@@ -74,36 +75,20 @@
             }
 
             function selectItem(e) {
-                items = e.parentNode.parentNode.parentNode;
+                items = document.getElementById("items");
                 search = items.childNodes[1];
-                idnum = search.getAttribute("id");
 
                 children = e.childNodes;
 
                 var itembinder = document.createElement("DIV");
 
-                html = '<div class="selecteditem"><div class="selecteditemcontainer"><div class="itemdata"><div class="selecteditem-name">Product: ';
-                html += children[1].getAttribute("value")+'</div><div class="selecteditem-sku">SKU: ';
-                html += children[3].getAttribute("value")+'</div><div class="selecteditem-price" id="selecteditem-price';
-                html += idnum
-                html += '" price="';
-                html += children[5].getAttribute("value")+'">Price: ';
-                html += children[5].getAttribute("value")+'</div><div class="quantitycontrol"><input class="unitinput" id="unitinput';
-                html += idnum;
-                html += '" type="number" value="1" min="1" max="999" onchange="updatePrice(';
-                html += idnum;
-                html += ')"><div class="selecteditem-units">';
-                html += children[7].getAttribute("value")+'</div></div></div></div><button class="delete" type="button" onclick="delSelItem(this)">🗑️</button></div><hr>';
+                html = '<div class="itembinder"><div class="selecteditem"><div class="selecteditemcontainer"><div class="itemdata"><div class="name">Product: '
+                html += children[0].getAttribute("value")+'</div><div class="sku">SKU: '
+                html += children[1].getAttribute("value")+'</div></div></div><button class="delete" type="button" onClick="delSelItem(this)">🗑️</button></div><hr></div>'
 
                 itembinder.innerHTML = html;
 
                 items.appendChild(itembinder);
-                items.removeChild(search);
-            }
-
-            function updatePrice(c) {
-                e = document.getElementById("selecteditem-price"+c);
-                e.innerHTML = "Price: "+e.getAttribute("price")*document.getElementById("unitinput"+c).value;
             }
 
         </script>
@@ -125,52 +110,24 @@
             </div>
             <hr>
 
-            <div class="items" id="items">
-                <div class="itembinder" id="1">
-                    <div class="item">
-                        <div class="itemleft">
-                            <input type="text" class="search" name="search" placeholder="Search here">
-                        </div>
-                        <div class="itemright">
-                            <button class="search" type="button">Search</button>
-                        </div>
+            <div class="search">
+                <div class="item">
+                    <div class="itemleft">
+                        <input type="text" class="search-text" id="search-text" name="search" placeholder="Search here">
                     </div>
-                    <div class="searchresults">
-                        <div class="searchitem" onclick="selectItem(this)">
-                            <div class="searchitem-name" value="mm yum yum">mm yum yum</div>
-                            <div class="searchitem-sku" value="3947">SKU: 3947</div>
-                            <div class="searchitem-price" value="420">Price: 420</div>
-                            <div class="searchitem-units" value="teemo(s)">Unit: teemo(s)</div>
-                        </div>
-                        <div class="searchitem" onclick="selectItem(this)">
-                            <div class="searchitem-name" value="oops poo poo">oops poo poo</div>
-                            <div class="searchitem-sku" value="404">SKU: 404</div>
-                            <div class="searchitem-price" value="4">Price: 4</div>
-                            <div class="searchitem-units" value="poo(s)">Unit: poo(s)</div>
-                        </div>
+                    <div class="itemright">
+                        <button class="search" id="search-button" type="button">Search</button>
                     </div>
-                    <hr>
                 </div>
-
-                <div class="itembinder" id="2">
-                    <div class="selecteditem">
-                        <div class="selecteditemcontainer">
-                            <div class="itemdata">
-                                <div class="selecteditem-name">Product: mm yum yum</div>
-                                <div class="selecteditem-sku">SKU: 3947</div>
-                                <div class="selecteditem-price" id="selecteditem-price2" price="420">Price: 420</div>
-                                <div class="quantitycontrol">
-                                    <input class="unitinput" id="unitinput2" type="number" value="1" min="1" max="999" onchange="updatePrice(2)">
-                                    <div class="selecteditem-units">teemo(s)</div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="delete" type="button" onClick="delSelItem(this)">🗑️</button>
-                    </div>
-                    <hr>
+                <div id="search-results">
+                    
                 </div>
             </div>
-            <button class="additem" type="button" onclick="addEntry()">Add entry</button>
+            <hr>
+
+            <div class="items" id="items">
+                
+            </div>
         </div>
     </body>
 </html>
