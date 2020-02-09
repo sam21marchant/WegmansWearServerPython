@@ -109,7 +109,7 @@ def makeSearch():
     return search_produce.search_produce(string)
 
 
-@app.route('/endpoints/lists/<list_id>/<sku>' methods = ['PUT'])
+@app.route('/endpoints/lists/<list_id>/<sku>', methods = ['PUT'])
 def updateProduct(list_id, sku):
     checked = request.args.get('checked')
     checked = checked == 'true'
