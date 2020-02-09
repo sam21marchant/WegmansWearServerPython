@@ -3,7 +3,7 @@ import json
 import os
 
 
-def getLists(user_id):
+def insertUser(google_id, name):
     ret_payload = []
     ret_code = 200
 
@@ -27,18 +27,16 @@ def getLists(user_id):
 
     db = mysql.connector.connect(**kwargs)
     db_cursor = db.cursor(prepared=True)
-    db_cursor.execute("SELECT * FROM wegamns_watch.list WHERE user_id = %s;", user_id)
-    myresult = db_cursor.fetchall()
-    field_names = [i[0] for i in db_cursor.description]
-    for res in myresult:
-        print(res)
-        x={}
-        for i in range(len(db_cursor.description)):
-            try:
-                val = res[i].decode()
-            except (AttributeError):
-                val = res[i]
-            x[db_cursor.description[i][0]] = val
-        ret_payload.append(x)
+    db_cursor.execute("""INSERT INTO user (name, google_id)
+        SELECT %s, %s
+        FROM DUAL
+        WHERE NOT EXISTS(
+            SELECT 1
+            FROM user
+            WHERE google_id = %s
+        )
+        LIMIT 1;""", (google_id, name, google_id))
+    db_cursor.execute("SELECT user_id FROM user WHERE google_id = %s LIMIT 1;", google_id)
+    row = db_cursor.fetchone()
     
-    return json.dumps(ret_payload), ret_code
+    return row[0], ret_code
