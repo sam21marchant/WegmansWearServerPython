@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wegmans Wear</title>
+        <link rel="stylesheet" type="text/css" href="static/styles.css">
+    </head>
+    <body>
+        <div class="title">
+            <a href="/" class="titlelink">Wegmans Wear</a>
+        </div>
+        <div class="nav">
+            <div class="links">
+                <a href="create" class="navlink">Create a Shopping List</a>
+                <a href="lists" class="navlink">My Shopping Lists</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="sectiontitle">
+                <div class="item">
+                    <div class="itemleft">
+                        <input type="text" class="search" id="search" name="search" placeholder="Search here">
+                    </div>
+                    <div class="itemright">
+                        <button class="search" type="button">Search</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="items" id="items">
+                <div class="itembinder" id="1">
+                    <div class="searchresults">
+                        {% for todo in lists %}
+                            <div class="item">
+                                {{ todo['name'] }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
