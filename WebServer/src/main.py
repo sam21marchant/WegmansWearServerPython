@@ -1,7 +1,7 @@
 import json
 import os
 
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for
 from endpoints import *
 
 from oauthlib.oauth2 import WebApplicationClient
@@ -24,7 +24,8 @@ def get_google_provider_cfg():
 
 
 @app.route('/')
-def hello():
+@app.route('/index')
+def index():
     return render_template('index.html')
 
 @app.route("/login")
@@ -75,6 +76,10 @@ def callback():
     userinfo_response = requests.get(uri, headers=headers, data=body)
     print(userinfo_response.json()["sub"])
     return redirect(url_for("index"))
+
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
 @app.route('/create')
 def createIndex():
