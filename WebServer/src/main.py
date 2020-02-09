@@ -108,5 +108,17 @@ def makeSearch():
     string = request.args.get('query')
     return search_produce.search_produce(string)
 
+
+@app.route('/endpoints/lists/<list_id>/<sku>', methods = ['PUT'])
+def updateProduct(list_id, sku):
+    checked = request.args.get('checked')
+    checked = checked == 'true'
+    auth = request.headers.get("X-Api-Key")
+    update_product.put_checked(auth, list_id, sku, checked)
+    return "GOOD"
+    
+
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
