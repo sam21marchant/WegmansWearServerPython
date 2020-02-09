@@ -2,6 +2,17 @@ body {
     font-family: Arial;
 }
 
+html.background{
+    background: url(images/assorted-vegetable-lot.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+    width: 100%;
+    height: 100%;
+}
+
 div.title {
     text-align: center;
     padding-top: 20px;
@@ -153,4 +164,40 @@ input.unitinput {
     top: 7px;
     height: 20px;
     margin-right: 5px;
+}
+
+div.indextitle {
+    width: 70%;
+    height: 150px;
+    margin: 0px auto;
+    margin-top: 50px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, .8);
+    outline: 5px solid white;
+    display: flex;
+    justify-content: space-around;
+}
+
+span.maintitle {
+    font-size: 4.5rem;
+    line-height: 140px;
+}
+
+div.loginbox {
+    width: 40%;
+    height: 30%;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, .8);
+    border: black solid 2px;
+}
+
+div.loginbox p{
+    text-align: center;
+    margin: 20px;
+}
+
+button.login{
+    text-align: center;
+    margin-left: 35%;
+    width: 30%;
 }

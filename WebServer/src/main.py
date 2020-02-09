@@ -74,8 +74,8 @@ def callback():
     userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
     uri, headers, body = client.add_token(userinfo_endpoint)
     userinfo_response = requests.get(uri, headers=headers, data=body)
-    create_user.insertUser(userinfo_response.json()["sub"], userinfo_response.json()["given_name"])
-    return redirect(url_for("index"))
+    print(userinfo_response.json()["sub"])
+    return redirect(url_for("home"))
 
 @app.route('/home')
 def home():
