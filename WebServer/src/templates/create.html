@@ -7,68 +7,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="static/script.js"></script>
         <script>
-            counter = 1;
-
-            function addEntry() {
-                counter++;
-                var itembinder = document.createElement("DIV");
-                var item = document.createElement("DIV");
-                var searchresults = document.createElement("DIV");
-                var itemleft = document.createElement("DIV");
-                var itemright = document.createElement("DIV");
-
-                var searchInput = document.createElement("INPUT");
-
-                var searchButton = document.createElement("BUTTON");
-                var deleteB = document.createElement("BUTTON");
-
-                var hr = document.createElement("HR");
-
-                searchButton.innerHTML = "Search";
-                deleteB.innerHTML = "🗑️";
-
-                itembinder.setAttribute("class", "itembinder");
-                itembinder.setAttribute("id", counter);
-
-                item.setAttribute("class", "item");
-
-                itemleft.setAttribute("class", "itemleft");
-
-                searchInput.setAttribute("class", "search-text");
-                searchInput.setAttribute("type", "text");
-                searchInput.setAttribute("name", "search");
-                searchInput.setAttribute("placeholder", "Search here");
-
-                searchButton.setAttribute("class", "search");
-                searchButton.setAttribute("id", "search-button");
-                searchButton.setAttribute("type", "button");
-
-                deleteB.setAttribute("class", "delete");
-                deleteB.setAttribute("type", "button");
-                deleteB.setAttribute("onClick", "delItem(this)");
-
-                itemright.setAttribute("class", "itemright");
-
-                searchresults.setAttribute("class", "searchresults");
-
-                itemright.appendChild(searchButton);
-                itemright.appendChild(deleteB);
-
-                itemleft.appendChild(searchInput);
-
-                item.appendChild(itemleft);
-                item.appendChild(itemright);
-
-                itembinder.appendChild(item);
-                itembinder.appendChild(searchresults);
-                itembinder.appendChild(hr);
-
-                document.getElementById("items").appendChild(itembinder);
-            }
-
-            function delItem(e) {
-                e.parentNode.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode.parentNode);
-            }
 
             function delSelItem(e) {
                 e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode);
@@ -128,6 +66,16 @@
             <div class="items" id="items">
                 
             </div>
+
+            <button class="createlist" onclick="submitData()">Create Shopping List</button>
+            <script>
+                document.getElementById("search-text").addEventListener("keyup", function(event) {
+                    if(event.keyCode == 13) {
+                        event.preventDefault();
+                        document.getElementById("search-button").click();
+                    }
+                });
+            </script>
         </div>
     </body>
 </html>
