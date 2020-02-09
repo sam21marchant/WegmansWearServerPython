@@ -88,13 +88,69 @@ div.items {
     margin: 0px 5px;
 }
 
+div.searchresults {
+    background-color: white;
+    outline: 1px solid #c8c8c8;
+    width: 77%;
+}
+
+div.searchitem {
+    background-color: white;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+div.searchitem:hover {
+    background-color: #e0e0e0;
+}
+
+div.searchitem div {
+    margin-right: 80px;
+}
+
 button.additem, button.additem:focus {
     width: 100%;
-    height: 200px;
     font-size: 64px;
     font-weight: bold;
-    background: white;
+    background: transparent;
     border: none !important;
     outline: none;
-    margin-bottom: 200px;
+    padding-bottom: 200px;
+    padding-top: 80px;
+}
+
+div.selecteditem {
+    background-color: white;
+    outline: 1px solid #c8c8c8;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20 px;
+    line-height: 40px;
+    box-sizing: border-box;
+}
+
+div.selecteditemcontainer {
+    width: 100%;
+    padding: 0px 10px;
+    margin-right: 100px;
+}
+
+div.itemdata {
+    display: flex;
+    justify-content: space-between;
+}
+
+div.quantitycontrol {
+    display: flex;
+}
+
+input.unitinput {
+    position: relative;
+    width: 50px;
+    top: 7px;
+    height: 20px;
+    margin-right: 5px;
 }

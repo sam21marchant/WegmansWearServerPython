@@ -34,7 +34,6 @@
 
                 searchInput.setAttribute("class", "search");
                 searchInput.setAttribute("type", "text");
-                searchInput.setAttribute("id", "search");
                 searchInput.setAttribute("name", "search");
                 searchInput.setAttribute("placeholder", "Search here");
 
@@ -67,6 +66,16 @@
             function delItem(e) {
                 e.parentNode.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode.parentNode);
             }
+
+            function delSelItem(e) {
+                e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode);
+            }
+
+            function selectItem(e) {
+                items = e.parentNode.parentNode.parentNode;
+                search = items.childNodes[1];
+                items.removeChild(search);
+            }
         </script>
     </head>
     <body>
@@ -90,14 +99,36 @@
                 <div class="itembinder" id="1">
                     <div class="item">
                         <div class="itemleft">
-                            <input type="text" class="search" id="search" name="search" placeholder="Search here">
+                            <input type="text" class="search" name="search" placeholder="Search here">
                         </div>
                         <div class="itemright">
                             <button class="search" type="button">Search</button>
                         </div>
                     </div>
                     <div class="searchresults">
-
+                        <div class="searchitem" onclick="selectItem(this)">
+                            <div class="searchitem-name">mm yum yum</div>
+                            <div class="searchitem-sku">SKU: 3947</div>
+                            <div class="searchitem-price">Price: 420</div>
+                            <div class="searchitem-units">Unit: teemo</div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="itembinder" id="2">
+                    <div class="selecteditem">
+                        <div class="selecteditemcontainer">
+                            <div class="itemdata">
+                                <div class="selecteditem-name">Product: mm yum yum</div>
+                                <div class="selecteditem-sku">SKU: 3947</div>
+                                <div class="selecteditem-price">Price: 420</div>
+                                <div class="quantitycontrol">
+                                    <input class="unitinput" type="number" value="1" min="1" max="999">
+                                    <div class="selecteditem-units">teemo(s)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="delete" type="button" onClick="delSelItem(this)">🗑️</button>
                     </div>
                     <hr>
                 </div>
